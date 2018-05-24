@@ -1,13 +1,14 @@
 package com.sojson.user.controller;
 
-import java.util.Date;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import com.sojson.common.controller.BaseController;
+import com.sojson.common.model.UUser;
+import com.sojson.common.utils.LoggerUtils;
+import com.sojson.common.utils.StringUtils;
+import com.sojson.common.utils.VerifyCodeUtils;
+import com.sojson.core.shiro.token.manager.TokenManager;
+import com.sojson.user.manager.UserManager;
+import com.sojson.user.service.UUserService;
 import net.sf.json.JSONObject;
-
 import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.web.util.SavedRequest;
 import org.apache.shiro.web.util.WebUtils;
@@ -18,14 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sojson.common.controller.BaseController;
-import com.sojson.common.model.UUser;
-import com.sojson.common.utils.LoggerUtils;
-import com.sojson.common.utils.StringUtils;
-import com.sojson.common.utils.VerifyCodeUtils;
-import com.sojson.core.shiro.token.manager.TokenManager;
-import com.sojson.user.manager.UserManager;
-import com.sojson.user.service.UUserService;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
+import java.util.Map;
 
 /**
  * 
@@ -126,7 +123,8 @@ public class UserLoginController extends BaseController {
 			resultMap.put("status", 200);
 			resultMap.put("message", "登录成功");
 			
-			
+
+
 			/**
 			 * shiro 获取登录之前的地址
 			 * 之前0.1版本这个没判断空。
